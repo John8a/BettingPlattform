@@ -1,6 +1,6 @@
 # HolidayCheck Coding Challenge
 
-I'm very proud of the result I got, but it could have been even better. With more time - currently planning my semestre abroad - I would have loved to do more. I still hope you like it!
+I'm very proud of the result I got, but it could have been even better. With more time - currently planning my semestre abroad and Uni is very time intensive - I would have loved to do more. I still hope you like it!
 
 ## About the Project
 
@@ -17,7 +17,17 @@ The project was built using the following technologies:
 - flask
 - etc. (some smaller, check out requirements.txt)
 
-## Getting Started
+## Getting Started: Watch the videos or try it yourself
+
+### Voice
+Part 1: https://www.loom.com/share/6ca18eaaf1a04215b5ecc5433ff8cd9b
+Part 2: https://www.loom.com/share/f97b1fd4bceb4565952542a5f8816ff4
+
+### No Voice
+
+Video: https://www.loom.com/share/16b8470d973644af9aba00f35994dce6
+
+
 ### Prerequisites
 
 To run this project, you need to have the following software installed:
