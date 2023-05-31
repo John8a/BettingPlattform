@@ -1,0 +1,434 @@
+:root {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+       text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.single-hotel {
+  margin: 50px auto !important;
+  width: 100vw !important;
+  max-width: 1200px !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.error {
+  color: rgb(192, 47, 47);
+  background-color: rgb(255, 184, 184);
+  font-weight: 600;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.center {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.center.hotels {
+  width: calc(100% - 340px);
+  margin: 50px 40px 0 20px;
+  margin-left: auto;
+}
+
+#confirmButton, #confirmButton2 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  display: block;
+  margin-top: 10px;
+  background-color: #768782;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 2px;
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+input {
+  outline: none;
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.pseudo-nav {
+  height: 80px;
+}
+
+nav {
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100vw;
+  max-width: 1500px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+nav.scrolling {
+  transition: 0.2s ease-in-out all;
+  background-color: #768782;
+}
+nav.scrolling .redirect a {
+  background-color: #fff;
+  color: #768782;
+}
+nav .brand {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+nav .brand span {
+  font-size: 1rem;
+}
+nav .nav-links ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+nav .nav-links ul li {
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+nav .redirect a {
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #768782;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+section[name=hero] {
+  background-image: url("https://images.unsplash.com/photo-1617532408070-369f42b448b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 80vh;
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+section[name=hero] h1 {
+  font-size: 3.5rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+section[name=hero] p {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+section[name=hero] p.hero-p {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+section[name=hero] .search-form {
+  background-color: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 1140px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+section[name=hero] .search-form .form {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  max-width: 1140px;
+}
+section[name=hero] .search-form .form .input-field {
+  color: #333;
+  max-width: 1140px;
+}
+section[name=hero] .search-form .form .input-field i svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+section[name=hero] .search-form .form .input-field.search {
+  padding: 20px 10px;
+  display: flex;
+  max-width: 1140px;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #7d7d7d;
+}
+section[name=hero] .search-form .form .input-field.search input {
+  width: 100%;
+  border: 0;
+  padding-left: 10px;
+}
+section[name=hero] .search-form .form .input-field.row {
+  display: flex;
+  width: 100%;
+}
+section[name=hero] .search-form .form .input-field.row .col {
+  width: 100%;
+  max-width: 25%;
+  height: 100%;
+  border-right: 0.5px solid #7d7d7d;
+  padding: 20px 10px;
+  cursor: pointer;
+}
+section[name=hero] .search-form .form .input-field.row .col .col-wrapper {
+  position: relative;
+}
+section[name=hero] .search-form .form .input-field.row .col .col-wrapper label {
+  display: flex;
+}
+section[name=hero] .search-form .form .input-field.row .col .col-wrapper label div {
+  margin-left: 8px;
+}
+section[name=hero] .search-form .form .input-field.row .col .col-wrapper input:not([type=submit]) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  opacity: 0;
+}
+section[name=hero] .search-form .form .input-field.row .col .modal {
+  position: absolute;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px 10px;
+}
+section[name=hero] .search-form .form .input-field.row .col .modal.guest .wrapper {
+  display: flex;
+  align-items: center;
+}
+section[name=hero] .search-form .form .input-field.row .col .modal.guest input {
+  width: 45px;
+  margin-top: -8px;
+  margin-left: 10px;
+  font-size: 18px;
+  border: 0;
+}
+section[name=hero] .search-form .form .input-field.row .col .modal.guest .children {
+  margin-top: 10px;
+}
+section[name=hero] .search-form .form .input-field.row .col .modal.guest .children i svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+section[name=hero] .search-form .form .input-field.row label {
+  cursor: pointer;
+}
+section[name=hero] .search-form .form .input-field.row label p {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+section[name=hero] .search-form .form .input-field.row label p.small {
+  font-size: 0.8rem;
+  color: #7d7d7d;
+}
+section[name=hero] .search-form .form .input-field.row .submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section[name=hero] .search-form .form .input-field.row input[type=submit] {
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
+  border: 1px solid #333;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #768782;
+  cursor: pointer;
+}
+
+section[name=results] .container {
+  position: relative;
+  height: 100%;
+}
+
+.filter-list {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  margin-top: 70px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  position: sticky;
+  top: 80px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.filter-list label {
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+.filter-list label:first-child {
+  margin-top: 0;
+}
+.filter-list .btn-filter {
+  margin-top: 15px;
+  padding: 5px 10px;
+  background-color: #768782;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+}
+
+.hotel-card {
+  display: flex;
+  align-items: top;
+  background-color: #f7f7f7;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.hotel-card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 300px;
+  height: 200px;
+  border-radius: 7px;
+}
+.hotel-card .card-text {
+  width: 100%;
+  padding: 10px;
+}
+.hotel-card .card-text .icons {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  float: right;
+}
+.hotel-card .card-text .icons .minor {
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+}
+.hotel-card .card-text .icons i {
+  margin-right: 0px;
+  font-size: 18px;
+}
+.hotel-card .card-text .description {
+  text-align: left;
+}
+.hotel-card .card-text .description p {
+  margin: 5px 0;
+}
+.hotel-card .card-text .description .apartment {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+.hotel-card .card-text .description .flights {
+  color: #333;
+}
+.hotel-card .card-text .description .flights span {
+  font-weight: 600;
+}
+.hotel-card .card-text .description .price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+.hotel-card .card-text .description .btn {
+  display: block;
+  margin-top: 9px;
+  padding: 5px 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #768782;
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 0;
+}
+
+.fa-star, .fa-star-half {
+  color: #f7c600;
+}
+
+.pagination .btn.btn-primary {
+  border: 0;
+  padding: 2px 3px;
+  color: #768782;
+  font-weight: 600;
+  border-bottom: 1px solid #768782;
+  text-decoration: none;
+}
+.pagination .btn.btn-primary:hover {
+  background-color: rgba(118, 135, 130, 0.0941176471);
+}
+
+footer {
+  margin-top: 20px;
+  background-color: #f7f7f7;
+}
+footer .center {
+  padding: 15px;
+  margin: 0;
+}
+footer .center i {
+  font-size: 24px;
+  color: #333;
+}/*# sourceMappingURL=main.css.map */

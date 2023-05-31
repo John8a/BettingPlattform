@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vergleich</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- stylesheet is in frontend/styles/main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+</head>
+<body>
+    <nav id="nav" class="scrolling">
+        <a href="/" class="brand">Compare <span>with John</span></a>
+        <div class="nav-links">
+            <ul>
+                <li>Hotels</li>
+                <li>Flüge</li>
+                <li>FAQ</li>
+            </ul>
+        </div>
+        <div class="redirect">
+            <a href="check24.de">Zu Check24</a>
+        </div>
+    </nav>
+
+    <div class="pseudo-nav">
+        
+    </div>
+
+    <section name="results">
+        {% if error_msg %}
+        <div class="center">
+                <h2 class="error">Wie kamst Du denn hier hin? Dieses Hotel gibt es gar nicht!.</h2>
+        </div>
+        {% endif %}
+        {% if hotels != [] %}
+        <div class="center hotels single-hotel">
+            <!-- pagination in total_pages -->
+            {% if total_pages > 1 %}
+            <div class="pagination">
+                {% if page > 1 %}
+                <a href="{{ url_for('hotel', hotelid=hotelid, page=page-1) }}#results" class="btn btn-primary">Zurück</a>
+                {% endif %}
+                {% if page < total_pages %}
+                <a href="{{ url_for('hotel', hotelid=hotelid, page=page+1) }}#results" class="btn btn-primary">Weiter</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            <ul>
+            {% for hotel in hotels %}
+                <div class="hotel-card">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/b1/04/a4/hotel-samos.jpg?w=1200&h=-1&s=1" alt="" width="300" height="300">
+                    <div class="card-text">
+                        <div class="icons">
+                            <div class="minor">
+                                <i class="fa-solid fa-water"></i>
+                                {{ hotel.oceanview }}
+                            </div>
+                            <div class="minor">
+                                <i class="fa-solid fa-utensils"></i>
+                                {{ hotel.mealtype }}
+                            </div>
+                            <div class="minor">
+                                <i class="fa-solid fa-users"></i> {{ hotel.countadults }} Erwachsene
+                            </div>
+                            <div class="minor">
+                                <i class="fa-solid fa-children"></i> {{ hotel.countchildren }} Kinder
+                            </div>
+                        </div>
+
+                        <div class="description">
+                            <h3>{{ hotel.hotelname }} 
+                                {% for i in range(hotel.hotelstars|int) %}
+                                    <i class="fa-solid fa-star"></i>
+                                {% endfor %}
+                                {% if hotel.hotelstars % 1 != 0 %}
+                                    <i class="fa-solid fa-star-half"></i>
+                                {% endif %}
+
+                            </h3>
+                            <p class="apartment"><i class="fa-solid fa-bed"></i> {{ hotel.roomtype }}</p>
+                            <p class="flights">Hinflug von <span>{{ hotel.outbounddepartureairport }}: {{ hotel.outbounddeparturedatetime }}</span></p>
+                            <p class="flights">Rückflug nach <span>{{ hotel.inboundarrivalairport }}: {{ hotel.inbounddeparturedatetime }}</span></p>
+                            <!-- <p>Flughafen Mallorca: {{ hotel.inbounddepartureairport }}</p> -->
+                            <p class="price">{{ hotel.price }}€</p>
+                            <a href="check24.de" target="_blank" class="btn btn-primary">Zu Check24</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </ul>
+            {% if total_pages > 1 %}
+            <div class="pagination">
+                {% if page > 1 %}
+                <a href="{{ url_for('hotel', hotelid=hotelid, page=page-1) }}" class="btn btn-primary">Zurück</a>
+                {% endif %}
+                {% if page < total_pages %}
+                <a href="{{ url_for('hotel', hotelid=hotelid, page=page+1) }}" class="btn btn-primary">Weiter</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </section>
+</body>
+</html>

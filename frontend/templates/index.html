@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vergleich</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- stylesheet is in frontend/styles/main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+</head>
+<body>
+    <nav id="nav">
+        <a href="/" class="brand">Compare <span>with John</span></a>
+        <div class="nav-links">
+            <ul>
+                <li>Hotels</li>
+                <li>Flüge</li>
+                <li>FAQ</li>
+            </ul>
+        </div>
+        <div class="redirect">
+            <a href="check24.de">Zu Check24</a>
+        </div>
+    </nav>
+
+    <section name="hero">
+        <h1>Urlaub in Palma!</h1>
+        <p class="hero-p">Nimm Dir ein paar Tage frei und genieß die Attraktivitäten in Palma oder feier im Ballermann</p>
+
+        <div class="search-form">
+            <!-- create search bar with magnifying glass inside -->
+            <form action="/" method="get" id="form1">
+                <div class="form">
+                    <div class="input-field search">
+                        <label for="hotelname">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                </svg>                          
+                            </i>
+                        </label>
+                        {% if hotel_params.hotelname == None %}
+                        <input autocomplete="off" type="text" id="hotelname" value="" name="hotelname" placeholder="Suche nach Hotels in Palma">
+                        {% else %}
+                        <input autocomplete="off" value="{{ hotel_params.hotelname }}" type="text" id="hotelname" value="" name="hotelname" placeholder="Suche nach Hotels in Palma">
+                        {% endif %}
+                    </div>
+                    <div class="input-field row">
+                        <div class="col">
+                            <div class="col-wrapper">
+                                <label for="outbounddeparturedatetime">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                        </svg>
+                                    </i>
+                                    <div>
+                                        <p id="displaycheckin">Check In</p>
+                                        <p class="small">Ankunft</p>
+                                    </div>
+                                </label>
+                                <input autocomplete="off" value="{{ offer_params.outbounddeparturedatetime }}" type="date" id="checkin" value="0" name="outbounddeparturedatetime" placeholder="Check In" onfocus="this.showPicker()">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="col-wrapper">
+                                <label for="inbounddeparturedatetime">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                        </svg>
+                                    </i>
+                                    <div>
+                                        <p id="displaycheckout">Check Out</p>
+                                        <p class="small">Abfahrt</p>
+                                    </div>
+                                </label>
+                                <input autocomplete="off" value="{{ offer_params.inbounddeparturedatetime }}" type="date" id="checkout" value="0" name="inbounddeparturedatetime" onfocus="this.showPicker()">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="col-wrapper">
+                                <label for="guests">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>                                  
+                                    </i>
+                                    <div>
+                                        {% if 'countadults' not in offer_params and 'countchildren' not in offer_params %}
+                                        <p id="guestdisplay">Gäste</p>
+                                        {% else %}
+                                        <p id="guestdisplay">Erwachsene: {{ offer_params.countadults }}, Kinder: {{ offer_params.countchildren }}</p> 
+                                        {% endif %}
+                                        <p class="small">Anzahl</p>
+                                    </div>
+                                </label>
+                                <input autocomplete="off" type="number" id="guests" name="guests" onfocus="openModalGuests()">
+                            </div>
+                            <div class="modal guest" id="guest" style="display: none;">
+                                <div class="adults">
+                                    <h5>Erwachsene</h5>
+                                    <div class="wrapper">
+                                        <label for="countadults">
+                                            <i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                                </svg>                                                  
+                                            </i>
+                                        </label>
+                                        {% if 'countadults' in offer_params %}
+                                        <input autocomplete="off" value="{{ offer_params.countadults }}" placeholder="0" name="countadults" id="countadults" min="0" max="100" type="number">
+                                        {% else %}
+                                        <input autocomplete="off" value="0" placeholder="0" name="countadults" id="countadults" min="0" max="100" type="number">
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="children">
+                                    <h5>Kinder</h5>
+                                    <div class="wrapper">
+                                        <label for="countchildren">
+                                            <i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                                </svg>                                                  
+                                            </i>
+                                        </label>
+                                        {% if 'countchildren' in offer_params %}
+                                        <input autocomplete="off" value="{{ offer_params.countchildren }}" placeholder="0" name="countchildren" id="countchildren" min="0" max="100" type="number">
+                                        {% else %}
+                                        <input autocomplete="off" value="0" placeholder="0" name="countchildren" id="countchildren" min="0" max="100" type="number">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <a id="confirmButton">Speichern</a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="col-wrapper">
+                                <label for="airport">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 01-1.81 1.025 1.055 1.055 0 01-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 01-1.383-2.46l.007-.042a2.25 2.25 0 01.29-.787l.09-.15a2.25 2.25 0 012.37-1.048l1.178.236a1.125 1.125 0 001.302-.795l.208-.73a1.125 1.125 0 00-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 01-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 01-1.458-1.137l1.411-2.353a2.25 2.25 0 00.286-.76m11.928 9.869A9 9 0 008.965 3.525m11.928 9.868A9 9 0 118.965 3.525" />
+                                        </svg>                                  
+                                    </i>
+                                    <div>
+                                        {% if ('outbounddepartureairport' not in offer_params or offer_params.outbounddepartureairport == 'NOT') %}
+                                        <p id="airportDisplay2">Flughafen</p>
+                                        {% else %}
+                                        <p id="airportDisplay2">{{ offer_params.outbounddepartureairport }}</p>
+                                        {% endif %}
+                                        <p class="small">Abflug</p>
+                                    </div>
+                                </label>
+                                <input autocomplete="off" value="{{ offer_params.outbounddepartureairport }}" type="text" id="outbounddepartureairport" name="outbounddepartureairport" onfocus="openModalAirports()">
+                            </div>
+                            <div class="modal airport" id="airports" style="display: none;">
+                                <div class="adults">
+                                    <h5>Flughafen</h5>
+                                    <div class="wrapper">
+                                        <select search="true" id="airportSelect">
+                                            <option selected value="NOT">Flughafen</option>
+                                            <option value="FRA">Frankfurt, Frankfurt Main</option>
+                                            <option value="MUC">Munich, Franz Josef Strauss</option>
+                                            <option value="DUS">Duesseldorf, Dusseldorf</option>
+                                            <option value="PMI">Palma de Mallorca, Son Sant Joan</option>
+                                            <option value="TXL">Berlin, Tegel</option>
+                                            <option value="HAM">Hamburg, Hamburg</option>
+                                            <option value="STR">Stuttgart, Stuttgart</option>
+                                            <option value="CGN">Cologne, Koln Bonn</option>
+                                            <option value="SXF">Berlin, Schonefeld</option>
+                                            <option value="HAJ">Hannover, Hannover</option>
+                                            <option value="BRE">Bremen, Neuenland</option>
+                                            <option value="NUE">Nuernberg, Nurnberg</option>
+                                            <option value="HHN">Hahn, Frankfurt Hahn</option>
+                                            <option value="LEJ">Leipzig, Leipzig Halle</option>
+                                            <option value="NRN">Weeze, Niederrhein</option>
+                                            <option value="DTM">Dortmund, Dortmund</option>
+                                            <option value="FMM">Memmingen, Allgau</option>
+                                            <option value="DRS">Dresden, Dresden</option>
+                                            <option value="FKB">Karlsruhe/Baden-Baden, Baden Airpark</option>
+                                            <option value="FDH">Friedrichshafen, Friedrichshafen</option>
+                                            <option value="PAD">Paderborn, Paderborn Lippstadt</option>
+                                            <option value="FMO">Munster, Munster Osnabruck</option>
+                                            <option value="SCN">Saarbruecken, Saarbrucken</option>
+                                            <option value="GWT">Westerland, Westerland Sylt</option>
+                                            <option value="ERF">Erfurt, Erfurt</option>
+                                            <option value="ZQW">Zweibruecken, Zweibruecken</option>
+                                            <option value="RLG">Laage, Laage</option>
+                                            <option value="HDF">Heringsdorf, Heringsdorf Airport</option>
+                                            <option value="LBC">Luebeck, Lubeck Blankensee</option>
+                                            <option value="KSF">Kassel, Kassel Calden</option>
+                                            <option value="OAL">Marktoberdorf, Marktoberdorf BF</option>
+                                            <option value="AGB">Augsburg, Augsburg</option>
+                                            <option value="XFW">Hamburg, Hamburg Finkenwerder</option>
+                                            <option value="MHG">Mannheim, Mannheim City</option>
+                                        </select>                                          
+                                    </div>
+                                </div>
+                                <a id="confirmButton2">Save</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-field row">
+                        <div class="submit">
+                            <input type="submit" value="Suchen">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section name="results" id="results">
+        <div class="container">
+
+            {% if show_filter %}
+            <form class="filter-list" method="get" action="/" id="form2">
+                <label for="hotelname">Hotelname</label>
+                {% if hotel_params.hotelname == None %}
+                <input autocomplete="off" placeholder="Hotelname" name="hotelname" type="text">
+                {% else %}
+                <input autocomplete="off" value="{{ hotel_params.hotelname }}" placeholder="Hotelname" name="hotelname" type="text">
+                {% endif %}
+                <label for="outbounddepartureairport">Flughafen</label>
+                <select search="true" name="outbounddepartureairport" id="airportSelect">
+                    <option value="NOT" {% if offer_params.outbounddepartureairport == 'NOT' %}selected {% endif %}>Flughafen</option>
+                    <option value="FRA" {% if offer_params.outbounddepartureairport == 'FRA' %}selected {% endif %}>Frankfurt, Frankfurt Main</option>
+                    <option value="MUC" {% if offer_params.outbounddepartureairport == 'MUC' %}selected {% endif %}>Munich, Franz Josef Strauss</option>
+                    <option value="DUS" {% if offer_params.outbounddepartureairport == 'DUS' %}selected {% endif %}>Duesseldorf, Dusseldorf</option>
+                    <option value="PMI" {% if offer_params.outbounddepartureairport == 'PMI' %}selected {% endif %}>Palma de Mallorca, Son Sant Joan</option>
+                    <option value="TXL" {% if offer_params.outbounddepartureairport == 'TXL' %}selected {% endif %}>Berlin, Tegel</option>
+                    <option value="HAM" {% if offer_params.outbounddepartureairport == 'HAM' %}selected {% endif %}>Hamburg, Hamburg</option>
+                    <option value="STR" {% if offer_params.outbounddepartureairport == 'STR' %}selected {% endif %}>Stuttgart, Stuttgart</option>
+                    <option value="CGN" {% if offer_params.outbounddepartureairport == 'CGN' %}selected {% endif %}>Cologne, Koln Bonn</option>
+                    <option value="SXF" {% if offer_params.outbounddepartureairport == 'SXF' %}selected {% endif %}>Berlin, Schonefeld</option>
+                    <option value="HAJ" {% if offer_params.outbounddepartureairport == 'HAJ' %}selected {% endif %}>Hannover, Hannover</option>
+                    <option value="BRE" {% if offer_params.outbounddepartureairport == 'BRE' %}selected {% endif %}>Bremen, Neuenland</option>
+                    <option value="NUE" {% if offer_params.outbounddepartureairport == 'NUE' %}selected {% endif %}>Nuernberg, Nurnberg</option>
+                    <option value="HHN" {% if offer_params.outbounddepartureairport == 'HHN' %}selected {% endif %}>Hahn, Frankfurt Hahn</option>
+                    <option value="LEJ" {% if offer_params.outbounddepartureairport == 'LEJ' %}selected {% endif %}>Leipzig, Leipzig Halle</option>
+                    <option value="NRN" {% if offer_params.outbounddepartureairport == 'NRN' %}selected {% endif %}>Weeze, Niederrhein</option>
+                    <option value="DTM" {% if offer_params.outbounddepartureairport == 'DTM' %}selected {% endif %}>Dortmund, Dortmund</option>
+                    <option value="FMM" {% if offer_params.outbounddepartureairport == 'FMM' %}selected {% endif %}>Memmingen, Allgau</option>
+                    <option value="DRS" {% if offer_params.outbounddepartureairport == 'DRS' %}selected {% endif %}>Dresden, Dresden</option>
+                    <option value="FKB" {% if offer_params.outbounddepartureairport == 'FKB' %}selected {% endif %}>Karlsruhe/Baden-Baden, Baden Airpark</option>
+                    <option value="FDH" {% if offer_params.outbounddepartureairport == 'FDH' %}selected {% endif %}>Friedrichshafen, Friedrichshafen</option>
+                    <option value="PAD" {% if offer_params.outbounddepartureairport == 'PAD' %}selected {% endif %}>Paderborn, Paderborn Lippstadt</option>
+                    <option value="FMO" {% if offer_params.outbounddepartureairport == 'FMO' %}selected {% endif %}>Munster, Munster Osnabruck</option>
+                    <option value="SCN" {% if offer_params.outbounddepartureairport == 'SCN' %}selected {% endif %}>Saarbruecken, Saarbrucken</option>
+                    <option value="GWT" {% if offer_params.outbounddepartureairport == 'GWT' %}selected {% endif %}>Westerland, Westerland Sylt</option>
+                    <option value="ERF" {% if offer_params.outbounddepartureairport == 'ERF' %}selected {% endif %}>Erfurt, Erfurt</option>
+                    <option value="ZQW" {% if offer_params.outbounddepartureairport == 'ZQW' %}selected {% endif %}>Zweibruecken, Zweibruecken</option>
+                    <option value="RLG" {% if offer_params.outbounddepartureairport == 'RLG' %}selected {% endif %}>Laage, Laage</option>
+                    <option value="HDF" {% if offer_params.outbounddepartureairport == 'HDF' %}selected {% endif %}>Heringsdorf, Heringsdorf Airport</option>
+                    <option value="LBC" {% if offer_params.outbounddepartureairport == 'LBC' %}selected {% endif %}>Luebeck, Lubeck Blankensee</option>
+                    <option value="KSF" {% if offer_params.outbounddepartureairport == 'KSF' %}selected {% endif %}>Kassel, Kassel Calden</option>
+                    <option value="OAL" {% if offer_params.outbounddepartureairport == 'OAL' %}selected {% endif %}>Marktoberdorf, Marktoberdorf BF</option>
+                    <option value="AGB" {% if offer_params.outbounddepartureairport == 'AGB' %}selected {% endif %}>Augsburg, Augsburg</option>
+                    <option value="XFW" {% if offer_params.outbounddepartureairport == 'XFW' %}selected {% endif %}>Hamburg, Hamburg Finkenwerder</option>
+                    <option value="MHG" {% if offer_params.outbounddepartureairport == 'MHG' %}selected {% endif %}>Mannheim, Mannheim City</option>
+                </select>
+
+                <label for="countadults">Anzahl Erwachsene</label>
+                <input autocomplete="off" value="{{ offer_params.countadults }}" placeholder="0" min="0" max="100" name="countadults" type="number">
+                
+                <label for="countchildren">Anzahl Kinder</label>
+                <input autocomplete="off" value="{{ offer_params.countchildren }}" placeholder="0" min="0" max="100" name="countchildren" type="number">
+                
+                <label for="outboundarrivaldatetime">Hinflug Ankunftszeit</label>
+                <input autocomplete="off" value="{{ offer_params.outbounddeparturedatetime }}" name="outbounddeparturedatetime" type="date">
+                
+                <label for="inboundarrivaldatetime">Rückflug Ankunftszeit</label>
+                <input autocomplete="off" value="{{ offer_params.inbounddeparturedatetime }}" name="inbounddeparturedatetime" type="date">
+
+                <label for="duration">Min. Dauer</label>
+                <input autocomplete="off" value="{{ offer_params.duration }}" placeholder="z.B. 7" min="0" max="100" name="duration" type="number">
+                
+                <label for="minprice">Min. Preis</label>
+                <input type="number" placeholder="z.B. 800" id="minprice" min="0" value="{{ offer_params.minprice }}" name="minprice">
+                
+                <label for="maxprice">Max. Preis</label>
+                <input type="number" placeholder="z.B. 1500" id="maxprice" min="0" value="{{ offer_params.maxprice }}" name="maxprice">
+                
+                <label for="roomtype">Zimmertyp</label>
+                <select id="roomtype" name="roomtype">
+                    <option value="NOT" {% if offer_params.roomtype == 'NOT' %}selected {% endif %}>No Selection</option>
+                    <option value="SINGLE" {% if offer_params.roomtype == 'SINGLE' %}selected {% endif %}>Einzelzimmer</option>
+                    <option value="DOUBLE" {% if offer_params.roomtype == 'DOUBLE' %}selected {% endif %}>Doppelzimmer</option>
+                    <option value="TRIPLE" {% if offer_params.roomtype == 'TRIPLE' %}selected {% endif %}>Dreierzimmer</option>
+                    <option value="FAMILY" {% if offer_params.roomtype == 'FAMILY' %}selected {% endif %}>Familienzimmer</option>
+                    <option value="ECONOMY" {% if offer_params.roomtype == 'ECONOMY' %}selected {% endif %}>Economy</option>
+                    <option value="SUPERIOR" {% if offer_params.roomtype == 'SUPERIOR' %}selected {% endif %}>Superior</option>
+                    <option value="STUDIO" {% if offer_params.roomtype == 'STUDIO' %}selected {% endif %}>Studio</option>
+                    <option value="SUITE" {% if offer_params.roomtype == 'SUITE' %}selected {% endif %}>Suite</option>
+                    <option value="APARTMENT" {% if offer_params.roomtype == 'APARTMENT' %}selected {% endif %}>Apartment</option>
+                    <option value="STUDIO" {% if offer_params.roomtype == 'STUDIO' %}selected {% endif %}>Studio</option>
+                    <option value="DELUXE" {% if offer_params.roomtype == 'DELUXE' %}selected {% endif %}>Deluxe</option>
+                    <option value="ACCORDINGDESCRIPTION" {% if offer_params.roomtype == 'ACCORDINGDESCRIPTION' %}selected {% endif %}>Andere</option>
+                </select>
+
+                <label for="mealtype">Verpflegung</label>
+                <select id="mealtype" name="mealtype">
+                    <option value="NOT" {% if offer_params.mealtype == 'NOT' %}selected {% endif %}>No Selection</option>
+                    <option value="NONE" {% if offer_params.mealtype == 'NONE' %}selected {% endif %}>No Meals</option>
+                    <option value="BREAKFAST" {% if offer_params.mealtype == 'BREAKFAST' %}selected {% endif %}>Breakfast</option>
+                    <option value="HALFBOARD" {% if offer_params.mealtype == 'HALFBOARD' %}selected {% endif %}>Halbpension</option>
+                    <option value="HALFBOARDPLUS" {% if offer_params.mealtype == 'HALFBOARDPLUS' %}selected {% endif %}>Halbpension+</option>
+                    <option value="ALLINCLUSIVE" {% if offer_params.mealtype == 'ALLINCLUSIVE' %}selected {% endif %}>All Inclusive</option>
+                    <option value="ALLINCLUSIVEPLUS" {% if offer_params.mealtype == 'ALLINCLUSIVEPLUS' %}selected {% endif %}>All Inclusive+</option>
+                    
+                </select>
+
+                <label for="hotelstars">Min. Sterne</label>
+                <select name="hotelstars" id="hotelstars">
+                    <option value="NOT" {% if hotel_params.hotelstars == 'NOT' %}selected {% endif %}>No Selection</option>
+                    <option value="1.0" {% if hotel_params.hotelstars == '1.0' %}selected {% endif %}>1 Star</option>
+                    <option value="2.0" {% if hotel_params.hotelstars == '2.0' %}selected {% endif %}>2 Stars</option>
+                    <option value="3.0" {% if hotel_params.hotelstars == '3.0' %}selected {% endif %}>3 Stars</option>
+                    <option value="4.0" {% if hotel_params.hotelstars == '4.0' %}selected {% endif %}>4 Stars</option>
+                    <option value="5.0" {% if hotel_params.hotelstars == '5.0' %}selected {% endif %}>5 Stars</option>
+                </select>
+
+                <label for="oceanview">Meerblick</label>
+                <select name="oceanview" id="oceanview">
+                    <option value="NOT" {% if offer_params.oceanview == 'NOT' %}selected {% endif %}>No Selection</option>
+                    <option value="True" {% if offer_params.oceanview == 'True' %}selected {% endif %}>Ocean View</option>
+                    <option value="False" {% if offer_params.oceanview == 'False' %}selected {% endif %}>No Ocean View</option>
+                </select>
+                
+                <button class="btn btn-filter">Anwenden</button>
+            </form>
+            {% else %}
+            <div class="center">
+                {% if hotels == [] %}
+                <h2>Stellen Sie eine Anfrage!</h2>
+                <p>Wählen Sie Ihren nächstgelegenen Flughafen in Deutschland aus. Nachdem Sie Ihre anfängliche Auswahl getroffen haben, können Sie Ihre Suche weiter verfeinern, indem Sie mehrere Filter verwenden, um Ihre Vorlieben anzupassen.</p>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if error_msg %}
+            <div class="center">
+                    <h2 class="error">Wow. Deine Angaben waren wohl zu speziell. Versuchs nochmal.</h2>
+            </div>
+            {% endif %}
+            {% if hotels != [] %}
+            <div class="center hotels">
+                <!-- pagination in total_pages -->
+                {% if total_pages > 1 %}
+                <div class="pagination">
+                    {% if page > 1 %}
+                    <a href="{{ url_for('index', page=page-1) }}#results" class="btn btn-primary">Zurück</a>
+                    {% endif %}
+                    {% if page < total_pages %}
+                    <a href="{{ next_page_url }}" class="btn btn-primary">Weiter</a>
+                    {% endif %}
+                </div>                
+                {% endif %}
+                <ul>
+                {% for hotel in hotels %}
+                    <div class="hotel-card">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/b1/04/a4/hotel-samos.jpg?w=1200&h=-1&s=1" alt="" width="300" height="300">
+                        <div class="card-text">
+                            <div class="icons">
+                                <div class="minor">
+                                    <i class="fa-solid fa-water"></i>
+                                    {{ hotel.oceanview }}
+                                </div>
+                                <div class="minor">
+                                    <i class="fa-solid fa-utensils"></i>
+                                    {{ hotel.mealtype }}
+                                </div>
+                                <div class="minor">
+                                    <i class="fa-solid fa-users"></i> {{ hotel.countadults }} Erwachsene
+                                </div>
+                                <div class="minor">
+                                    <i class="fa-solid fa-children"></i> {{ hotel.countchildren }} Kinder
+                                </div>
+                            </div>
+
+                            <div class="description">
+                                <h3>{{ hotel.hotelname }} 
+                                    {% for i in range(hotel.hotelstars|int) %}
+                                        <i class="fa-solid fa-star"></i>
+                                    {% endfor %}
+                                    {% if hotel.hotelstars % 1 != 0 %}
+                                        <i class="fa-solid fa-star-half"></i>
+                                    {% endif %}
+
+                                </h3>
+                                <p class="apartment"><i class="fa-solid fa-bed"></i> {{ hotel.roomtype }}</p>
+                                <p class="flights">Hinflug von <span>{{ hotel.outbounddepartureairport }}: {{ hotel.outbounddeparturedatetime }}</span></p>
+                                <p class="flights">Rückflug nach <span>{{ hotel.inboundarrivalairport }}: {{ hotel.inbounddeparturedatetime }}</span></p>
+                                <!-- <p>Flughafen Mallorca: {{ hotel.inbounddepartureairport }}</p> -->
+                                <p class="price">{{ hotel.price }}€</p>
+                                <a href="/{{ hotel.hotelid }}" target="_blank" class="btn btn-primary">Alle Angebote</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </ul>
+                {% if total_pages > 1 %}
+                <div class="pagination">
+                    {% if page > 1 %}
+                    <a href="{{ url_for('index', page=page-1) }}#results" class="btn btn-primary">Zurück</a>
+                    {% endif %}
+                    {% if page < total_pages %}
+                    <a href="{{ next_page_url }}" class="btn btn-primary">Weiter</a>
+                    {% endif %}
+                </div>                
+                {% endif %}
+            </div>
+        {% endif %}
+        </div>
+    </section>
+    <footer>
+        <div class="center">
+            <div class="linkedin">
+                <a href="https://www.linkedin.com/in/john-graf-von-hardenberg/"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <p>© 2023 by John v. Hardenberg</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='styles/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='styles/multi-select-dropdown.js') }}"></script>
+</body>
+</html>
