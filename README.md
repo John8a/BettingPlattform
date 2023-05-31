@@ -44,7 +44,7 @@ To run this project, you need to have the following software installed:
 6. Click on a result to see more hotel offers
 
 ## Notes
-I tried quite long to load the >100000000 offers, but my Mac wasn't able to create enough chunks and concat them. I tried to use Dask, but I didn't get it to work. So I decided to use only 100000 offers. I hope this is enough to show my skills. Also, I was trying threading, which also worked for me. Also thought about using a databse, but didn't know if this is allowed. So I decided to use pandas and numpy.
+I tried quite long to load the >100000000 offers, but my Mac wasn't able to create enough chunks and concat them. I tried to use Dask, but I didn't get it to work. So I decided to use only 100000 offers. I hope this is enough to show my skills. Also, I was trying threading, which also worked for me. Also thought about using a databse, but didn't know if this is allowed. So I decided to use pandas and numpy. The data folder is the folder where I stored the data. I included a placeholder for the offers.csv
 
 ## Possible Improvements
 - Would have loved to process more data, need to check out where the bottleneck is
